@@ -18,6 +18,9 @@ public interface BitcoinApi {
     @GetMapping("/rest/block/{blockhash}.json")
     JSONObject getBlock(@PathVariable("blockhash") String blockhash);
 
+    @GetMapping("/rest/block/notxdetails/{blockhash}.json")
+    JSONObject getNoTxBlock(@PathVariable("blockhash") String blockhash);
+
     @GetMapping("/rest/headers/{count}/{blockhash}.json")
     JSONArray getBlockHeaders(@PathVariable("count") Integer count, @PathVariable("blockhash") String blockhash);
 
