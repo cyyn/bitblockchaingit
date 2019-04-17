@@ -36,5 +36,4 @@ public class MiscController {
     public ImportStateDTO getImportState(){
         return null;
     }
-
 }
