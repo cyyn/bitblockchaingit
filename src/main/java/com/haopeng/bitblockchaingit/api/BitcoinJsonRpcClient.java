@@ -38,7 +38,4 @@ public class BitcoinJsonRpcClient {
 
     }
 
-
-    public void getBalance() {
-    }
 }
