@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients
-@MapperScan("com.haopeng.bitblockchaingit.po")
+@MapperScan("com.haopeng.bitblockchaingit.dao")
 public class BitblockchaingitApplication {
 
     public static void main(String[] args) {
