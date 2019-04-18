@@ -23,7 +23,7 @@ public class TempController {
     @GetMapping("/test")
     public void test() throws Throwable {
         //查询区块链信息
-        //JSONObject chainInfo = bitcoinApi.getChainInfo();
+        JSONObject chainInfo = bitcoinApi.getChainInfo();
 
         //通过这个交易的hash查询交易信息
         //String txhash = "25c9afda23222e8c327fa0bfb6458ea77d538725eb1d34b497a7eec31cc51b79";
@@ -46,6 +46,9 @@ public class TempController {
         // SONObject mempoolContents = bitcoinApi.getMempoolContents();
 
         // String blockHashByHeight = bitcoinJsonRpcClient.getBlockHashByHeight(1489445);
+
+        String adderss="2MxVBAE3b4EacXnukRM8npCgySW5HrEQWAo";
+        Double balance = bitcoinJsonRpcClient.getBalance(adderss);
     }
 
 }

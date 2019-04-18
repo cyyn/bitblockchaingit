@@ -1,5 +1,7 @@
 package com.haopeng.bitblockchaingit.api;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import org.springframework.stereotype.Service;
 
@@ -27,4 +29,16 @@ public class BitcoinJsonRpcClient {
         return blockhash;
     }
 
+    public Double getBalance(String address) throws Throwable {
+        JSONArray listunspent = jsonRpcHttpClient.invoke("listunspent", new Object[]{6, 9999999, new String[]{address}},
+                JSONArray.class);
+        JSONObject jsonObject = listunspent.getJSONObject(0);
+        Double aDouble = jsonObject.getDouble("amount");
+        return aDouble;
+
+    }
+
+
+    public void getBalance() {
+    }
 }
