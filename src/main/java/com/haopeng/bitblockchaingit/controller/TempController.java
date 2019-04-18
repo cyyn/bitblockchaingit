@@ -22,17 +22,30 @@ public class TempController {
 
     @GetMapping("/test")
     public void test() throws Throwable {
-        JSONObject chainInfo = bitcoinApi.getChainInfo();
-        String txhash = "21c6f7de3fb8ad3e5e034b85b9ac80cdc51214bcbe5ebfed9267dd8a19e239ea";
-        JSONObject transaction = bitcoinApi.getTransaction(txhash);
-        String blockhash = "000000000000004b1aecd12119a19e38efdce8c385f89a5d3a7698427108a2ee";
-        JSONObject block = bitcoinApi.getBlock(blockhash);
-        JSONObject noTxBlock = bitcoinApi.getNoTxBlock(blockhash);
-        String blockhash2 = "00000000000000a727d074e9d1cc0a225540eb40693d6aa15d702b0bd96d378b";
-        JSONArray blockHeaders = bitcoinApi.getBlockHeaders(10, blockhash2);
-        JSONObject mempoolInfo = bitcoinApi.getMempoolInfo();
-        JSONObject mempoolContents = bitcoinApi.getMempoolContents();
-        String blockHashByHeight = bitcoinJsonRpcClient.getBlockHashByHeight(1489445);
+        //查询区块链信息
+        //JSONObject chainInfo = bitcoinApi.getChainInfo();
+
+        //通过这个交易的hash查询交易信息
+        //String txhash = "25c9afda23222e8c327fa0bfb6458ea77d538725eb1d34b497a7eec31cc51b79";
+        //JSONObject transaction = bitcoinApi.getTransaction(txhash);
+
+        //通过区块的hash查询区块信息
+        // String blockhash = "00000000000000ef7a27f22cfa593ea9227e309fe65ed3fe29fbbff5d003961e";
+        //JSONObject block = bitcoinApi.getBlock(blockhash);
+        ////返回值中有上个块的hash值
+        //JSONObject noTxBlock = bitcoinApi.getNoTxBlock(blockhash);
+
+        //查询这个块中10条交易记录
+        //String blockhash2 = "00000000000000ef7a27f22cfa593ea9227e309fe65ed3fe29fbbff5d003961e";
+        //JSONArray blockHeaders = bitcoinApi.getBlockHeaders(10, blockhash2);
+
+         //查询有关TX mempool的各种信息。仅支持JSON作为输出格式。
+        //JSONObject mempoolInfo = bitcoinApi.getMempoolInfo();
+
+        //查询TX mempool中的事务。仅支持JSON作为输出格式
+        // SONObject mempoolContents = bitcoinApi.getMempoolContents();
+
+        // String blockHashByHeight = bitcoinJsonRpcClient.getBlockHashByHeight(1489445);
     }
 
 }
