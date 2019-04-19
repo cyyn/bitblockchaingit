@@ -138,4 +138,8 @@
       fees = #{fees,jdbcType=DOUBLE}
     where txid = #{txid,jdbcType=CHAR}
   </update>
+
+  <update id="truncate">
+    truncate table transaction;
+  </update>
 </mapper>

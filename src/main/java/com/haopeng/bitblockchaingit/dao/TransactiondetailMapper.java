@@ -15,4 +15,6 @@ public interface TransactiondetailMapper {
     int updateByPrimaryKeySelective(Transactiondetail record);
 
     int updateByPrimaryKey(Transactiondetail record);
+
+    void truncate();
 }

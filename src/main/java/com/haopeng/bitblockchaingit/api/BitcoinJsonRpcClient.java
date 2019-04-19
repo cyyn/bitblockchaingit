@@ -35,7 +35,10 @@ public class BitcoinJsonRpcClient {
         JSONObject jsonObject = listunspent.getJSONObject(0);
         Double aDouble = jsonObject.getDouble("amount");
         return aDouble;
-
     }
 
+    public JSONObject getRawTransaxtion(String txid) throws Throwable {
+        JSONObject getrawtransaction = jsonRpcHttpClient.invoke("getrawtransaction", new Object[]{txid, true}, JSONObject.class);
+        return getrawtransaction;
+    }
 }
