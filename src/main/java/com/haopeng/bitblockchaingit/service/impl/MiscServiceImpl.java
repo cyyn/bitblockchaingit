@@ -45,13 +45,11 @@ public class MiscServiceImpl implements MiscService {
     @Async
     @Override
     public void importFromHash(String blockHash, Boolean isClean) {
-
         if(isClean){
             blockMapper.truncate();
             transactionMapper.truncate();
             transactiondetailMapper.truncate();
         }
-
         String temphash = blockHash;
         while (temphash != null && !temphash.isEmpty()){
             JSONObject blockOrigin = bitcoinApi.getBlock(temphash);
@@ -94,14 +92,11 @@ public class MiscServiceImpl implements MiscService {
         for (int i = 0; i < vouts.size(); i++) {
             importVoutDetail(vouts.getJSONObject(i),txid);
         }
-
-
-        //获取一条交易记录中的发送方的信息
-        JSONArray vins=tx.getJSONArray("vin");
-        for (int i = 0; i < vins.size(); i++) {
-            importVoutDetail(vins.getJSONObject(i),txid);
-        }
-
+//        //获取一条交易记录中的发送方的信息
+//        JSONArray vins=tx.getJSONArray("vin");
+//        for (int i = 0; i < vins.size(); i++) {
+//            importVoutDetail(vins.getJSONObject(i),txid);
+//        }
     }
 
 
@@ -118,6 +113,9 @@ public class MiscServiceImpl implements MiscService {
         Double amount = vout.getDouble("value");
         transactiondetail.setAmount(amount);
         transactiondetail.setType((byte) TransactionDetailType.Receive.ordinal());
+
+        transactiondetailMapper.insert(transactiondetail);
+
     }
 
 
@@ -145,7 +143,6 @@ public class MiscServiceImpl implements MiscService {
             transactiondetail.setAddress(address);
         }
         transactiondetailMapper.insert(transactiondetail);
-
 
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("misc")
+@RequestMapping("/misc")
 @EnableAutoConfiguration
 public class MiscController {
 
@@ -27,7 +27,7 @@ public class MiscController {
            miscService.importFromHeight(blockHeight,isClean);
     }
 
-    @GetMapping("importFromHash")
+    @GetMapping("/importFromHash")
     public  void  importFromHash(@RequestParam String blockhash, Boolean isClean){
            miscService.importFromHash(blockhash,isClean);
     }
