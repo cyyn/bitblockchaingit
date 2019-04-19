@@ -47,8 +47,8 @@ public class TempController {
 
         // String blockHashByHeight = bitcoinJsonRpcClient.getBlockHashByHeight(1489445);
 
-        String adderss="2MxVBAE3b4EacXnukRM8npCgySW5HrEQWAo";
-        Double balance = bitcoinJsonRpcClient.getBalance(adderss);
+        //String adderss="2MxVBAE3b4EacXnukRM8npCgySW5HrEQWAo";
+        //Double balance = bitcoinJsonRpcClient.getBalance(adderss);
     }
 
 }

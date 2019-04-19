@@ -174,4 +174,8 @@
       merkle_root = #{merkleRoot,jdbcType=CHAR}
     where blockhash = #{blockhash,jdbcType=CHAR}
   </update>
+
+  <update id="truncate">
+     truncate table block;
+  </update>
 </mapper>

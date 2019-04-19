@@ -30,6 +30,12 @@ public class MiscServiceImpl implements MiscService {
     @Async
     @Override
     public void importFromHash(String blockHash, Boolean isClean) {
+
+        if(isClean){
+            blockMapper.truncate();
+        }
+
+
         String temphash = blockHash;
         while (temphash != null && !temphash.isEmpty()){
             JSONObject blockOrigin = bitcoinApi.getBlock(temphash);
