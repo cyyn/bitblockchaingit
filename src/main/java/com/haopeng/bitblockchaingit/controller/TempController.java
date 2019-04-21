@@ -49,6 +49,11 @@ public class TempController {
 
         //String adderss="2MxVBAE3b4EacXnukRM8npCgySW5HrEQWAo";
         //Double balance = bitcoinJsonRpcClient.getBalance(adderss);
+
+        String txid="94b2fc97b1a35fb4d02688ef16f8bae43264cdf405476288836e49392f30c677";
+        JSONObject rawTransaxtion = bitcoinJsonRpcClient.getRawTransaxtion(txid);
+
+
     }
 
 }
