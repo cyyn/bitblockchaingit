@@ -27,8 +27,9 @@ public class MiscController {
            miscService.importFromHeight(blockHeight,isClean);
     }
 
+    //根据一个块信息向数据中添加块信息和交易信息
     @GetMapping("/importFromHash")
-    public  void  importFromHash(@RequestParam String blockhash, Boolean isClean){
+    public  void  importFromHash(@RequestParam String blockhash, Boolean isClean) throws Throwable {
            miscService.importFromHash(blockhash,isClean);
     }
 

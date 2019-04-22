@@ -44,7 +44,7 @@ public class MiscServiceImpl implements MiscService {
 
     @Async
     @Override
-    public void importFromHash(String blockHash, Boolean isClean) {
+    public void importFromHash(String blockHash, Boolean isClean) throws Throwable {
         if(isClean){
             blockMapper.truncate();
             transactionMapper.truncate();
@@ -76,7 +76,7 @@ public class MiscServiceImpl implements MiscService {
     }
 
 
-    public void importTx(JSONObject tx,String blockhash,Date time){
+    public void importTx(JSONObject tx,String blockhash,Date time) throws Throwable {
         Transaction transaction = new Transaction();
         String txid=tx.getString("txid");
         transaction.setTxid(txid);
@@ -92,11 +92,11 @@ public class MiscServiceImpl implements MiscService {
         for (int i = 0; i < vouts.size(); i++) {
             importVoutDetail(vouts.getJSONObject(i),txid);
         }
-//        //获取一条交易记录中的发送方的信息
-//        JSONArray vins=tx.getJSONArray("vin");
-//        for (int i = 0; i < vins.size(); i++) {
-//            importVoutDetail(vins.getJSONObject(i),txid);
-//        }
+        //获取一条交易记录中的发送方的信息
+        JSONArray vins=tx.getJSONArray("vin");
+        for (int i = 1; i < vins.size(); i++) {
+           importVinDetail(vins.getJSONObject(i),txid);
+        }
     }
 
 
@@ -125,7 +125,7 @@ public class MiscServiceImpl implements MiscService {
         String txid = vin.getString("txid");
         Integer vout = vin.getInteger("vout");
 
-        //通过这个交易交易id查询出这个交易id的信息
+        //通过这个交易的交易id查询出这个交易id的信息
         JSONObject rawTransaxtion = bitcoinJsonRpcClient.getRawTransaxtion(txid);
         JSONArray vout1 = rawTransaxtion.getJSONArray("vout");
         JSONObject jsonObject = vout1.getJSONObject(vout);

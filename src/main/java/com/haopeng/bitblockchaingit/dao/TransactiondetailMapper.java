@@ -3,6 +3,8 @@ package com.haopeng.bitblockchaingit.dao;
 import com.haopeng.bitblockchaingit.po.Transactiondetail;
 import com.haopeng.bitblockchaingit.po.TransactiondetailKey;
 
+import java.util.List;
+
 public interface TransactiondetailMapper {
     int deleteByPrimaryKey(TransactiondetailKey key);
 
@@ -17,4 +19,6 @@ public interface TransactiondetailMapper {
     int updateByPrimaryKey(Transactiondetail record);
 
     void truncate();
+
+    List<Transactiondetail> selectByAddress(String address);
 }

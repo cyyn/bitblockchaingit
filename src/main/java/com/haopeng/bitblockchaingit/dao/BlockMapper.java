@@ -2,6 +2,8 @@ package com.haopeng.bitblockchaingit.dao;
 
 import com.haopeng.bitblockchaingit.po.Block;
 
+import java.util.List;
+
 public interface BlockMapper {
     int deleteByPrimaryKey(String blockhash);
 
@@ -16,4 +18,6 @@ public interface BlockMapper {
     int updateByPrimaryKey(Block record);
 
     void truncate();
+
+    List<Block> selectRecent();
 }
