@@ -1,6 +1,6 @@
 package com.haopeng.bitblockchaingit.po;
 
-public class Transactiondetail extends TransactiondetailKey {
+public class  Transactiondetail extends TransactiondetailKey {
     private Byte type;
 
     private Double amount;

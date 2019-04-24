@@ -10,10 +10,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableFeignClients
 @MapperScan("com.haopeng.bitblockchaingit.dao")
 //这个注解是让异步起作用
-//@EnableAsync
+@EnableAsync
 public class BitblockchaingitApplication {
     public static void main(String[] args) {
         SpringApplication.run(BitblockchaingitApplication.class, args);
     }
-
 }

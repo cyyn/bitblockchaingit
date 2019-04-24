@@ -10,10 +10,7 @@ import com.haopeng.bitblockchaingit.dto.BlockListDTO;
 import com.haopeng.bitblockchaingit.po.Block;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -22,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/block")
+@CrossOrigin
 public class BlockController {
 
     @Autowired
@@ -82,7 +80,7 @@ public class BlockController {
             BlockListDTO blockListDTO = new BlockListDTO();
             blockListDTO.setTxSize(block.getTxSize());
             blockListDTO.setHeight(block.getHeight());
-            blockListDTO.setTime(block.getTime());
+            blockListDTO.setTime(block.getTime().getTime());
             blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
             return blockListDTO;
         }).collect(Collectors.toList());

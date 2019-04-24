@@ -6,7 +6,7 @@ public class BlockListDTO {
 
     private Integer height;
 
-    private Date time;
+    private Long time;
 
     private Integer txSize;
 
@@ -20,13 +20,9 @@ public class BlockListDTO {
         this.height = height;
     }
 
-    public Date getTime() {
-        return time;
-    }
+    public Long getTime() { return time; }
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
+    public void setTime(Long time) { this.time = time; }
 
     public Integer getTxSize() {
         return txSize;
