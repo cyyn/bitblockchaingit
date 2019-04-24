@@ -52,6 +52,7 @@ public class MiscServiceImpl implements MiscService {
         }
         String temphash = blockHash;
         while (temphash != null && !temphash.isEmpty()){
+            //查询出块的信息
             JSONObject blockOrigin = bitcoinApi.getBlock(temphash);
             Block block = new Block();
             block.setBlockhash(blockOrigin.getString("hash"));
