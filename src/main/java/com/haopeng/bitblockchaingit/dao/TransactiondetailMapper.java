@@ -1,5 +1,6 @@
 package com.haopeng.bitblockchaingit.dao;
 
+import com.haopeng.bitblockchaingit.dto.BlockDetailDTO;
 import com.haopeng.bitblockchaingit.po.Transactiondetail;
 import com.haopeng.bitblockchaingit.po.TransactiondetailKey;
 
@@ -21,4 +22,5 @@ public interface TransactiondetailMapper {
     void truncate();
 
     List<Transactiondetail> selectByAddress(String address);
+
 }

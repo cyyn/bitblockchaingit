@@ -1,5 +1,6 @@
 package com.haopeng.bitblockchaingit.dao;
 
+import com.haopeng.bitblockchaingit.dto.BlockDetailDTO;
 import com.haopeng.bitblockchaingit.po.Block;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface BlockMapper {
     void truncate();
 
     List<Block> selectRecent();
+
+    Block seleBlockDetailByHeight(Integer blockheight);
 }

@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.haopeng.bitblockchaingit.api.BitcoinApi;
 import com.haopeng.bitblockchaingit.api.BitcoinJsonRpcClient;
 import com.haopeng.bitblockchaingit.dao.BlockMapper;
+import com.haopeng.bitblockchaingit.dao.TransactionMapper;
+import com.haopeng.bitblockchaingit.dao.TransactiondetailMapper;
 import com.haopeng.bitblockchaingit.dto.BlockDetailDTO;
 import com.haopeng.bitblockchaingit.dto.BlockListDTO;
 import com.haopeng.bitblockchaingit.po.Block;
@@ -28,6 +30,9 @@ public class BlockServiceImpl implements BlockService {
 
     @Autowired
     private BlockMapper blockMapper;
+
+    @Autowired
+    private TransactionMapper transactionMapper;
 
     @Value("${blockchain.recentCount}")
     private Integer recentCount;
@@ -93,6 +98,9 @@ public class BlockServiceImpl implements BlockService {
     }
 
     public  BlockDetailDTO getBlockDetailByHeight(Integer blockheight){
+        //查询出块的信息
+        Block  blockDetailDTO=blockMapper.seleBlockDetailByHeight(blockheight);
+        //根据块的信息查询出
         return null;
     }
 }

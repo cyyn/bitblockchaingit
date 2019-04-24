@@ -20,12 +20,17 @@
     next_blockhash, output_total, transaction_fees, merkle_root
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from block
     where blockhash = #{blockhash,jdbcType=CHAR}
   </select>
-
+  <select id="seleBlockDetailByHeight" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where height = #{height}
+  </select>
   <select id="selectRecent"  resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
