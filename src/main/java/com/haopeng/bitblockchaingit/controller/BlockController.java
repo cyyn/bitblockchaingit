@@ -34,6 +34,7 @@ public class BlockController {
         return  blockDetailDTO;
     }
 
+    //根据块的高度获得块的信息
     @GetMapping("/getBlockDetailByHeight")
     public  BlockDetailDTO getBlockDetailByHeight(@RequestParam Integer blockheight){
         BlockDetailDTO blockDetailDTO=blockService.getBlockDetailByHeight(blockheight);

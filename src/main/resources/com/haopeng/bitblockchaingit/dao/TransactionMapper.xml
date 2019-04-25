@@ -12,6 +12,12 @@
     <result column="total_output" jdbcType="DOUBLE" property="totalOutput" />
     <result column="fees" jdbcType="DOUBLE" property="fees" />
   </resultMap>
+  <resultMap id="BaseTransactionInBlockDTO" type="com.haopeng.bitblockchaingit.dto.TransactionInBlockDTO">
+    <id column="txid" jdbcType="CHAR" property="txid" />
+    <result column="txhash" jdbcType="CHAR" property="txhash" />
+    <result column="size" jdbcType="BIGINT" property="size" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
   <sql id="Base_Column_List">
     txid, txhash, blockhash, size, weight, time, total_input, total_output, fees
   </sql>
@@ -21,7 +27,7 @@
     from transaction
     where txid = #{txid,jdbcType=CHAR}
   </select>
-  <select id="seleByBlockhash" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="seleByBlockhash" parameterType="java.lang.String" resultMap="BaseTransactionInBlockDTO">
     select
     <include refid="Base_Column_List" />
     from transaction
