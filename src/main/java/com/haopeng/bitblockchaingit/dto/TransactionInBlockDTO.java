@@ -1,6 +1,9 @@
 package com.haopeng.bitblockchaingit.dto;
 
+import com.haopeng.bitblockchaingit.po.Transactiondetail;
+
 import java.util.Date;
+import java.util.List;
 
 public class TransactionInBlockDTO {
 
@@ -11,6 +14,8 @@ public class TransactionInBlockDTO {
     private Long size;
 
     private Date time;
+
+    private List<Transactiondetail> txDetailInTxInfos;
 
     public String getTxid() {
         return txid;
@@ -42,5 +47,13 @@ public class TransactionInBlockDTO {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public List<Transactiondetail> getTxDetailInTxInfos() {
+        return txDetailInTxInfos;
+    }
+
+    public void setTxDetailInTxInfos(List<Transactiondetail> txDetailInTxInfos) {
+        this.txDetailInTxInfos = txDetailInTxInfos;
     }
 }

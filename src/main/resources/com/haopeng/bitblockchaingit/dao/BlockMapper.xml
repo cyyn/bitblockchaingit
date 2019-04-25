@@ -15,6 +15,20 @@
     <result column="transaction_fees" jdbcType="DOUBLE" property="transactionFees" />
     <result column="merkle_root" jdbcType="CHAR" property="merkleRoot" />
   </resultMap>
+  <resultMap id="BaseBlockDetailDTO" type="com.haopeng.bitblockchaingit.dto.BlockDetailDTO">
+    <id column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="blockchain_id" jdbcType="INTEGER" property="blockchainId" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="tx_size" jdbcType="INTEGER" property="txSize" />
+    <result column="size_on_disk" jdbcType="BIGINT" property="sizeOnDisk" />
+    <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
+    <result column="prev_blockhash" jdbcType="CHAR" property="prevBlockhash" />
+    <result column="next_blockhash" jdbcType="CHAR" property="nextBlockhash" />
+    <result column="output_total" jdbcType="DOUBLE" property="outputTotal" />
+    <result column="transaction_fees" jdbcType="DOUBLE" property="transactionFees" />
+    <result column="merkle_root" jdbcType="CHAR" property="merkleRoot" />
+  </resultMap>
   <sql id="Base_Column_List">
     blockhash, blockchain_id, height, time, tx_size, size_on_disk, difficulty, prev_blockhash, 
     next_blockhash, output_total, transaction_fees, merkle_root
@@ -25,7 +39,7 @@
     from block
     where blockhash = #{blockhash,jdbcType=CHAR}
   </select>
-  <select id="seleBlockDetailByHeight" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="seleBlockDetailByHeight" parameterType="java.lang.Integer" resultMap="BaseBlockDetailDTO">
     select
     <include refid="Base_Column_List" />
     from block

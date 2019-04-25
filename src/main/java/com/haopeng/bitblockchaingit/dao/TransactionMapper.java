@@ -1,6 +1,9 @@
 package com.haopeng.bitblockchaingit.dao;
 
+import com.haopeng.bitblockchaingit.dto.TransactionInBlockDTO;
 import com.haopeng.bitblockchaingit.po.Transaction;
+
+import java.util.List;
 
 public interface TransactionMapper {
     int deleteByPrimaryKey(String txid);
@@ -16,4 +19,6 @@ public interface TransactionMapper {
     int updateByPrimaryKey(Transaction record);
 
     void truncate();
+
+    List<TransactionInBlockDTO> seleByBlockhash(String blockhash);
 }

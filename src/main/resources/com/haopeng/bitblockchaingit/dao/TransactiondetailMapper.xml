@@ -10,13 +10,19 @@
   <sql id="Base_Column_List">
     txid, address, type, amount
   </sql>
-  <select id="selectByPrimaryKey" parameterType="com.haopeng.bitblockchaingit.po.TransactiondetailKey" resultMap="BaseResultMap">
-    select 
+  <select id="seleTransactionTxid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from transaction_detail
-    where txid = #{txid,jdbcType=CHAR}
-      and address = #{address,jdbcType=VARCHAR}
+    where txid = #{txid}
   </select>
+  <select id="selectByPrimaryKey" parameterType="com.haopeng.bitblockchaingit.po.TransactiondetailKey" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from transaction_detail
+  where txid = #{txid,jdbcType=CHAR}
+  and address = #{address,jdbcType=VARCHAR}
+</select>
   <select id="selectByAddress"  parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

@@ -9,7 +9,10 @@ import com.haopeng.bitblockchaingit.dao.TransactionMapper;
 import com.haopeng.bitblockchaingit.dao.TransactiondetailMapper;
 import com.haopeng.bitblockchaingit.dto.BlockDetailDTO;
 import com.haopeng.bitblockchaingit.dto.BlockListDTO;
+import com.haopeng.bitblockchaingit.dto.TransactionInBlockDTO;
+import com.haopeng.bitblockchaingit.dto.TxDetailInTxInfo;
 import com.haopeng.bitblockchaingit.po.Block;
+import com.haopeng.bitblockchaingit.po.Transactiondetail;
 import com.haopeng.bitblockchaingit.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +33,9 @@ public class BlockServiceImpl implements BlockService {
 
     @Autowired
     private BlockMapper blockMapper;
+
+    @Autowired
+    private TransactiondetailMapper transactiondetailMapper;
 
     @Autowired
     private TransactionMapper transactionMapper;
@@ -99,8 +105,16 @@ public class BlockServiceImpl implements BlockService {
 
     public  BlockDetailDTO getBlockDetailByHeight(Integer blockheight){
         //查询出块的信息
-        Block  blockDetailDTO=blockMapper.seleBlockDetailByHeight(blockheight);
-        //根据块的信息查询出
-        return null;
+        BlockDetailDTO  blockDetailDTO=blockMapper.seleBlockDetailByHeight(blockheight);
+        //根据块的hash查询出每笔交易的信息
+        List<TransactionInBlockDTO> transactionInBlockDTOS=transactionMapper.seleByBlockhash(blockDetailDTO.getBlockhash());
+        //根据每笔交易的id查询出交易的信息
+        for (TransactionInBlockDTO transactionInBlockDTO : transactionInBlockDTOS) {
+            List<Transactiondetail> txDetailInTxInfos=transactiondetailMapper.seleTransactionTxid(transactionInBlockDTO.getTxid());
+            transactionInBlockDTO.setTxDetailInTxInfos(txDetailInTxInfos);
+        }
+        //把查询出来的交易信息放入其中
+        blockDetailDTO.setTransactions(transactionInBlockDTOS);
+        return blockDetailDTO;
     }
 }

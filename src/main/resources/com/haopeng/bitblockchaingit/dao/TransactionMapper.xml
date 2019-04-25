@@ -21,6 +21,12 @@
     from transaction
     where txid = #{txid,jdbcType=CHAR}
   </select>
+  <select id="seleByBlockhash" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from transaction
+    where blockhash = #{blockhash}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from transaction
     where txid = #{txid,jdbcType=CHAR}
