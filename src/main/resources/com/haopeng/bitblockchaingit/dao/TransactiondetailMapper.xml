@@ -7,9 +7,22 @@
     <result column="type" jdbcType="TINYINT" property="type" />
     <result column="amount" jdbcType="DOUBLE" property="amount" />
   </resultMap>
+  <resultMap id="BaseTransactionDetailDTO" type="com.haopeng.bitblockchaingit.dto.TransactionDetailDTO">
+    <id column="txid" jdbcType="CHAR" property="txid" />
+    <id column="address" jdbcType="VARCHAR" property="address" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+  </resultMap>
   <sql id="Base_Column_List">
     txid, address, type, amount
   </sql>
+
+  <select id="seletransactionByaddress" parameterType="java.lang.String" resultMap="BaseTransactionDetailDTO">
+    select
+    <include refid="Base_Column_List" />
+    from transaction_detail
+    where address = #{address}
+  </select>
   <select id="seleTransactionTxid" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

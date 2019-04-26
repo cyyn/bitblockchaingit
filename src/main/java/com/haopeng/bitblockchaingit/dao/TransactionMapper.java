@@ -12,7 +12,7 @@ public interface TransactionMapper {
 
     int insertSelective(Transaction record);
 
-    Transaction selectByPrimaryKey(String txid);
+    TransactionInBlockDTO selectByPrimaryKey(String txid);
 
     int updateByPrimaryKeySelective(Transaction record);
 

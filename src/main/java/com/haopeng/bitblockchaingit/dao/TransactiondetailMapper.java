@@ -1,6 +1,7 @@
 package com.haopeng.bitblockchaingit.dao;
 
 import com.haopeng.bitblockchaingit.dto.BlockDetailDTO;
+import com.haopeng.bitblockchaingit.dto.TransactionDetailDTO;
 import com.haopeng.bitblockchaingit.dto.TxDetailInTxInfo;
 import com.haopeng.bitblockchaingit.po.Transactiondetail;
 import com.haopeng.bitblockchaingit.po.TransactiondetailKey;
@@ -25,4 +26,5 @@ public interface TransactiondetailMapper {
     List<Transactiondetail> selectByAddress(String address);
 
     List<Transactiondetail> seleTransactionTxid(String txid);
+
 }

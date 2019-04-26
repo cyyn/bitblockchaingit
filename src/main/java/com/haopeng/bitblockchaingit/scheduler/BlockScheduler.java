@@ -13,8 +13,8 @@ public class BlockScheduler {
     //定时器可以10分钟执行一次，现在是3秒执行
     @Scheduled(fixedDelay = 3000)
     public void importBlockTransaction(){
+
         logger.info("start import block transactions");
+
     }
-
-
 }
