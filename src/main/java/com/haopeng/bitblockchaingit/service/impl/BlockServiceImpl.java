@@ -99,8 +99,20 @@ public class BlockServiceImpl implements BlockService {
         return  null;
     }
 
+    //根据块的hash查询块的信息
     public BlockDetailDTO getBlockDetailByHash(String blockhash){
-        return  null;
+        //查询出块的信息
+        BlockDetailDTO blockDetailDTO = blockMapper.selectByPrimaryKey(blockhash);
+        //根据块的hash查询出每笔交易的信息
+        List<TransactionInBlockDTO> transactionInBlockDTOS=transactionMapper.seleByBlockhash(blockDetailDTO.getBlockhash());
+        //根据每笔交易的id查询出交易的信息
+        for (TransactionInBlockDTO transactionInBlockDTO : transactionInBlockDTOS) {
+            List<Transactiondetail> txDetailInTxInfos=transactiondetailMapper.seleTransactionTxid(transactionInBlockDTO.getTxid());
+            transactionInBlockDTO.setTxDetailInTxInfos(txDetailInTxInfos);
+        }
+        //把查询出来的交易信息放入其中
+        blockDetailDTO.setTransactions(transactionInBlockDTOS);
+        return blockDetailDTO;
     }
 
     public  BlockDetailDTO getBlockDetailByHeight(Integer blockheight){

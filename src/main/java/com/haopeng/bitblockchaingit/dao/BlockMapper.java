@@ -12,7 +12,7 @@ public interface BlockMapper {
 
     int insertSelective(Block record);
 
-    Block selectByPrimaryKey(String blockhash);
+    BlockDetailDTO selectByPrimaryKey(String blockhash);
 
     int updateByPrimaryKeySelective(Block record);
 

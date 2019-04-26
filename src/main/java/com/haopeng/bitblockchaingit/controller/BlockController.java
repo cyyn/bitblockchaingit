@@ -28,6 +28,7 @@ public class BlockController {
         return  blocksByNameType;
     }
 
+    //根据块的hash查询块的信息
     @GetMapping("/getBlockDetailByHash")
     public BlockDetailDTO getBlockDetailByHash(@RequestParam String blockhash){
         BlockDetailDTO blockDetailDTO=blockService.getBlockDetailByHash(blockhash);
