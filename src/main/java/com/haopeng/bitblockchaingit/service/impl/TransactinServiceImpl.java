@@ -37,6 +37,7 @@ public class TransactinServiceImpl implements TransactinService {
             transactionInBlockDTO.setTxDetailInTxInfos(transactiondetails1);
             transactionInBlockDTOS.add(transactionInBlockDTO);
         }
+        transactionDetailDTO.setCount(transactionInBlockDTOS.size());
         transactionDetailDTO.setTransactiondetails(transactionInBlockDTOS);
         return transactionDetailDTO;
     }
