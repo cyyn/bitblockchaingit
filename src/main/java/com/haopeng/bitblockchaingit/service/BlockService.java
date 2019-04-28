@@ -2,6 +2,7 @@ package com.haopeng.bitblockchaingit.service;
 
 import com.haopeng.bitblockchaingit.dto.BlockDetailDTO;
 import com.haopeng.bitblockchaingit.dto.BlockListDTO;
+import com.haopeng.bitblockchaingit.po.Transaction;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface BlockService {
     BlockDetailDTO getBlockDetailByHash(String blockhash);
 
     BlockDetailDTO getBlockDetailByHeight(Integer blockheight);
+
+    List<Transaction> getByheight(String height);
 }

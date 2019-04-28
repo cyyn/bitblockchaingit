@@ -7,11 +7,9 @@ import com.haopeng.bitblockchaingit.api.BitcoinJsonRpcClient;
 import com.haopeng.bitblockchaingit.dao.BlockMapper;
 import com.haopeng.bitblockchaingit.dao.TransactionMapper;
 import com.haopeng.bitblockchaingit.dao.TransactiondetailMapper;
-import com.haopeng.bitblockchaingit.dto.BlockDetailDTO;
-import com.haopeng.bitblockchaingit.dto.BlockListDTO;
-import com.haopeng.bitblockchaingit.dto.TransactionInBlockDTO;
-import com.haopeng.bitblockchaingit.dto.TxDetailInTxInfo;
+import com.haopeng.bitblockchaingit.dto.*;
 import com.haopeng.bitblockchaingit.po.Block;
+import com.haopeng.bitblockchaingit.po.Transaction;
 import com.haopeng.bitblockchaingit.po.Transactiondetail;
 import com.haopeng.bitblockchaingit.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,4 +127,25 @@ public class BlockServiceImpl implements BlockService {
         blockDetailDTO.setTransactions(transactionInBlockDTOS);
         return blockDetailDTO;
     }
+
+
+    //根据块的height查询块信息
+    @Override
+    public List<Transaction> getByheight(String height) {
+        //查询一个块下的五条交易信息
+        Block byheight = blockMapper.getByheight(height);
+        //根据块的块hash查询交易信息
+        List<TransactionAmoutDTO> transactions = transactionMapper.seleblockhash(byheight.getBlockhash());
+        //根据交易id查询该条交易信息下的交易数量
+        for (TransactionAmoutDTO transaction : transactions) {
+            List<Transactiondetail> transactiondetails = transactiondetailMapper.seleTransactionTxid(transaction.getTxid());
+
+        }
+
+
+
+
+        return null;
+    }
+
 }

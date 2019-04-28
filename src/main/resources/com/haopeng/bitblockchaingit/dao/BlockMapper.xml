@@ -39,6 +39,12 @@
     from block
     where blockhash = #{blockhash,jdbcType=CHAR}
   </select>
+  <select id="getByheight" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where height = #{height}
+  </select>
   <select id="seleBlockDetailByHeight" parameterType="java.lang.Integer" resultMap="BaseBlockDetailDTO">
     select
     <include refid="Base_Column_List" />

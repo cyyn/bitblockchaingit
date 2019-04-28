@@ -23,4 +23,6 @@ public interface BlockMapper {
     List<Block> selectRecent();
 
     BlockDetailDTO seleBlockDetailByHeight(Integer blockheight);
+
+    Block getByheight(String height);
 }

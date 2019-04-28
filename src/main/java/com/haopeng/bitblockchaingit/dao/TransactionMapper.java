@@ -1,5 +1,6 @@
 package com.haopeng.bitblockchaingit.dao;
 
+import com.haopeng.bitblockchaingit.dto.TransactionAmoutDTO;
 import com.haopeng.bitblockchaingit.dto.TransactionInBlockDTO;
 import com.haopeng.bitblockchaingit.po.Transaction;
 
@@ -21,4 +22,6 @@ public interface TransactionMapper {
     void truncate();
 
     List<TransactionInBlockDTO> seleByBlockhash(String blockhash);
+
+    List<TransactionAmoutDTO> seleblockhash(String blockhash);
 }

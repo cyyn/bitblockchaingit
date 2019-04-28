@@ -25,6 +25,6 @@ public interface TransactiondetailMapper {
 
     List<Transactiondetail> selectByAddress(String address);
 
-    List<Transactiondetail> seleTransactionTxid(String txid);
+    List<Transactiondetail> seleTransactionTxid(String txid);//
 
 }

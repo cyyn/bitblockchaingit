@@ -41,4 +41,7 @@ public class BlockController {
         BlockDetailDTO blockDetailDTO=blockService.getBlockDetailByHeight(blockheight);
         return blockDetailDTO;
     }
+
+    //根据块的高度查询块的信息
+
 }
