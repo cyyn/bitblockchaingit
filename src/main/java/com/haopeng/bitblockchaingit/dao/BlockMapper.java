@@ -24,5 +24,7 @@ public interface BlockMapper {
 
     BlockDetailDTO seleBlockDetailByHeight(Integer blockheight);
 
-    Block getByheight(String height);
+    Block getByheight(Integer height);
+
+    Block selemaxheigheight();
 }

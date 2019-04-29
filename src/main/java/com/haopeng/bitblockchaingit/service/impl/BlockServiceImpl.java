@@ -129,23 +129,31 @@ public class BlockServiceImpl implements BlockService {
     }
 
 
-    //根据块的height查询块信息
+    //根据块的hash查询该块下的交易信息
     @Override
-    public List<Transaction> getByheight(String height) {
-        //查询一个块下的五条交易信息
-        Block byheight = blockMapper.getByheight(height);
-        //根据块的块hash查询交易信息
-        List<TransactionAmoutDTO> transactions = transactionMapper.seleblockhash(byheight.getBlockhash());
-        //根据交易id查询该条交易信息下的交易数量
-        for (TransactionAmoutDTO transaction : transactions) {
-            List<Transactiondetail> transactiondetails = transactiondetailMapper.seleTransactionTxid(transaction.getTxid());
-
+    public List<TransactionAmoutDTO> getByheight(String blockhash) {
+        if (blockhash==null || blockhash.equals("")){
+            //查询最大的块的高度（height）
+            Block block=blockMapper.selemaxheigheight();
+            //根据最大高度查询出块的信息
+            Block byheight = blockMapper.getByheight(block.getHeight());
+            //把块的hash值赋给blockhash
+            blockhash=byheight.getBlockhash();
         }
-
-
-
-
-        return null;
+        //根据块的块hash查询交易信息
+        List<TransactionAmoutDTO> transactions = transactionMapper.seleblockhash(blockhash);
+        for (TransactionAmoutDTO transaction : transactions) {
+           //根据这条交易id查询该条交易信息下所有交易发送者和接收者
+            List<Transactiondetail> transactiondetails = transactiondetailMapper.seleTransactionTxid(transaction.getTxid());
+           //把该条交易下所有发送者和接受者进行遍历
+            for (Transactiondetail transactiondetail : transactiondetails) {
+                    //把所有的发送者的比特币加起来
+                    if (transactiondetail.getType().equals(2)){
+                        transaction.setAmountbtc(transactiondetail.getAmount()+transaction.getAmountbtc());
+                    }
+            }
+            //transaction.setAmountusd(transaction.getAmountbtc()*5000);
+        }
+        return transactions;
     }
-
 }

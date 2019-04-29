@@ -2,6 +2,7 @@ package com.haopeng.bitblockchaingit.controller;
 
 import com.haopeng.bitblockchaingit.dto.BlockDetailDTO;
 import com.haopeng.bitblockchaingit.dto.BlockListDTO;
+import com.haopeng.bitblockchaingit.dto.TransactionAmoutDTO;
 import com.haopeng.bitblockchaingit.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,6 @@ public class BlockController {
         return  blockListDTOS;
     }
 
-    @GetMapping("/getRecentBlocksByNameType")
-    public List<BlockListDTO> getRecentBlocksByNameType(@RequestParam String name,@RequestParam String type){
-        List<BlockListDTO> blocksByNameType=blockService.getRecentBlocksByNameType(name,type);
-        return  blocksByNameType;
-    }
-
     //根据块的hash查询块的信息
     @GetMapping("/getBlockDetailByHash")
     public BlockDetailDTO getBlockDetailByHash(@RequestParam String blockhash){
@@ -42,6 +37,11 @@ public class BlockController {
         return blockDetailDTO;
     }
 
-    //根据块的高度查询块的信息
+    //根据块的hash查询该块下的详细交易信息
+    @GetMapping("/getblockhash")
+    public List<TransactionAmoutDTO> getblockhash(@RequestParam(required = false,defaultValue = "") String blockhash){
+        List<TransactionAmoutDTO> byheight = blockService.getByheight(blockhash);
+        return  byheight;
+    }
 
 }
