@@ -12,9 +12,19 @@ public class TransactionAmoutDTO {
 
     private Date time;
 
-    private Double amountbtc;
+    private long timemiao;
 
-    private Double amountusd;
+    private String amountbtc;
+
+    private String amountusd;
+
+    public long getTimemiao() {
+        return timemiao;
+    }
+
+    public void setTimemiao(long timemiao) {
+        this.timemiao = timemiao;
+    }
 
     public String getTxid() {
         return txid;
@@ -48,19 +58,19 @@ public class TransactionAmoutDTO {
         this.time = time;
     }
 
-    public Double getAmountbtc() {
+    public String getAmountbtc() {
         return amountbtc;
     }
 
-    public void setAmountbtc(Double amountbtc) {
+    public void setAmountbtc(String amountbtc) {
         this.amountbtc = amountbtc;
     }
 
-    public Double getAmountusd() {
+    public String getAmountusd() {
         return amountusd;
     }
 
-    public void setAmountusd(Double amountusd) {
+    public void setAmountusd(String amountusd) {
         this.amountusd = amountusd;
     }
 }

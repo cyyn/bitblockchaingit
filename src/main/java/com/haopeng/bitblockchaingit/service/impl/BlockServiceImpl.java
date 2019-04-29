@@ -143,16 +143,25 @@ public class BlockServiceImpl implements BlockService {
         //根据块的块hash查询交易信息
         List<TransactionAmoutDTO> transactions = transactionMapper.seleblockhash(blockhash);
         for (TransactionAmoutDTO transaction : transactions) {
+            transaction.setTimemiao(transaction.getTime().getTime());
+            Double amountbtc=0.0;
            //根据这条交易id查询该条交易信息下所有交易发送者和接收者
             List<Transactiondetail> transactiondetails = transactiondetailMapper.seleTransactionTxid(transaction.getTxid());
            //把该条交易下所有发送者和接受者进行遍历
             for (Transactiondetail transactiondetail : transactiondetails) {
                     //把所有的发送者的比特币加起来
-                    if (transactiondetail.getType().equals(2)){
-                        transaction.setAmountbtc(transactiondetail.getAmount()+transaction.getAmountbtc());
+                    if (transactiondetail.getType()==2){
+                        amountbtc+=transactiondetail.getAmount();
                     }
             }
-            //transaction.setAmountusd(transaction.getAmountbtc()*5000);
+            //保留6位小数
+            amountbtc = (double) Math.round(amountbtc * 1000000) / 100000;
+            transaction.setAmountbtc(amountbtc+"  BTC");
+            //把比特币转换为美元
+            amountbtc=amountbtc*5000;
+            //把转换成美元的钱保留后两位小数
+            amountbtc = (double) Math.round(amountbtc * 100) / 100;
+            transaction.setAmountusd("$"+amountbtc);
         }
         return transactions;
     }

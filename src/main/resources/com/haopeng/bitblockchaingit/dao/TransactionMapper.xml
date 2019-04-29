@@ -38,7 +38,7 @@
     select
     <include refid="Base_Column_List" />
     from transaction
-    where blockhash = #{blockhash}
+    where blockhash = #{blockhash} LIMIT 0,5
   </select>
 
   <select id="seleByBlockhash" parameterType="java.lang.String" resultMap="BaseTransactionInBlockDTO">
