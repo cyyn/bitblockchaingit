@@ -4,6 +4,7 @@ package com.haopeng.bitblockchaingit.service.impl;
 import com.haopeng.bitblockchaingit.dao.TransactionMapper;
 import com.haopeng.bitblockchaingit.dao.TransactiondetailMapper;
 import com.haopeng.bitblockchaingit.dto.TransactionDetailDTO;
+import com.haopeng.bitblockchaingit.dto.TransactionHash;
 import com.haopeng.bitblockchaingit.dto.TransactionInBlockDTO;
 import com.haopeng.bitblockchaingit.po.Transactiondetail;
 import com.haopeng.bitblockchaingit.service.TransactinService;
@@ -41,4 +42,33 @@ public class TransactinServiceImpl implements TransactinService {
         transactionDetailDTO.setTransactiondetails(transactionInBlockDTOS);
         return transactionDetailDTO;
     }
+
+    @Override
+    public TransactionHash seletransactiondetailhash(String txhash) {
+        //通过交易hash查询
+        TransactionHash transactionHash=transactionMapper.seletransactiondetailhash(txhash);
+        //通过交易id把交易地址信息拿到
+        List<Transactiondetail> transactiondetails = transactiondetailMapper.seleTransactionTxid(transactionHash.getTxid());
+        double input=0;
+        double output=0;
+        //把数据进行遍历
+        for (Transactiondetail transactiondetail : transactiondetails) {
+            if (transactiondetail.getType()==1){
+                input+=transactiondetail.getAmount();
+            }else {
+                output+=transactiondetail.getAmount();
+            }
+        }
+        transactionHash.setTotalInput(input);
+        transactionHash.setTotalOutput(output);
+        if (input>output){
+          transactionHash.setFees(input-output);
+        }else {
+          transactionHash.setFees(0.0);
+        }
+        transactionHash.setTransactiondetails(transactiondetails);
+        return transactionHash;
+    }
+
+
 }
